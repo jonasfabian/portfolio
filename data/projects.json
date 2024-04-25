@@ -3,7 +3,7 @@
     "name": "Visual Karsys",
     "startDate": "2018",
     "endDate": "2019",
-    "description": "Visual KARSYS is a software platform for karst groundwater management, providing tools to assess aquifer geometries and flow systems. It supports scientists, engineers, and stakeholders in addressing groundwater exploitation, civil engineering, geothermal projects, natural hazards, and waste management in karst environments.",
+    "description": "As a key developer of the frontend for Visual KARSYS, I enhanced user interaction and data visualization capabilities. Visual KARSYS is a software platform for karst groundwater management, offering tools to assess aquifer geometries and flow systems. It supports various applications including groundwater exploitation, civil engineering, geothermal projects, natural hazards, and waste management in karst environments.",
     "logo": "visual_karsys.jpeg",
     "url": "https://www.visualkarsys.com/",
     "technologies": [
@@ -25,7 +25,7 @@
     "name": "Schweizer Dialektsammlung",
     "startDate": "2020",
     "endDate": "2021",
-    "description": "The Swiss Dialect Collection is a national research project by ZHAW and FHNW for collecting local dialect recordings. The public can now help by creating voice recordings with a simple app. The digitized dialects can train crucial computer programs. I mainly worked on the app's frontend.",
+    "description": "I mainly developed the labeling tool and parts of the website itself for the Swiss Dialect Collection app, a national research project by ZHAW and FHNW focused on collecting local dialect recordings. Through a simple app, the public can contribute voice recordings, which are then digitized to train crucial computer programs.",
     "logo": "schweizer_dialektsammlung.jpg",
     "url": "https://swissnlp.org/home/activities/die-schweizer-dialektsammlung/",
     "technologies": [
@@ -41,7 +41,7 @@
     "name": "Studenthub",
     "startDate": "2020",
     "endDate": "Present",
-    "description": "Studenthub, which I developed from scratch, was initially tailored for FHNW's Data Science program to help track student progress and facilitate course selection. As it evolved to meet broader needs within FHNW HT, it now offers detailed graphical overviews of courses, grades, and program structures, with future plans to enhance course planning features.",
+    "description": "As the team leader and developer, I created Studenthub from scratch, initially tailored for FHNW's Data Science program. This platform helps track student progress and facilitates course selection. As it evolved to meet broader needs within FHNW HT, Studenthub now provides detailed graphical overviews of courses, grades, and program structures, with future plans to further enhance its course planning features.",
     "logo": "fhnw.svg",
     "url": "https://studenthub.technik.fhnw.ch/",
     "technologies": [
