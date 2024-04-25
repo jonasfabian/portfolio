@@ -47,12 +47,6 @@ main {
     padding: 4rem 0;
 }
 
-.navigation {
-    display: flex;
-    flex-direction: row;
-    gap: var(--space-unit);
-}
-
 footer {
     display: flex;
     flex-direction: row;
@@ -61,6 +55,8 @@ footer {
     width: 100%;
     height: var(--space-xxl);
 }
+
+/*--------------Projects--------------*/
 
 .projectContainers {
     display: flex;
@@ -83,6 +79,15 @@ footer {
     grid-column: 2 / 6;
     align-content: end;
     font-weight: bold;
+    color: var(--tertiary-color);
+    text-decoration: none;
+    display: flex;
+    gap: .3rem;
+    align-items: end;
+}
+
+.projectTitleContainer:visited {
+    color: var(--tertiary-color);
 }
 
 .projectContainersTitle {
@@ -97,6 +102,7 @@ footer {
     grid-row: 1/ 2;
     align-content: end;
     font-weight: 100;
+    text-align: end;
 }
 
 .projectLogo {
@@ -111,6 +117,69 @@ footer {
     font-weight: 300;
 }
 
+/*--------------Websites--------------*/
+
+.websiteContainers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.websiteContainer {
+    display: grid;
+    grid-template-columns: 7rem repeat(5, 1fr);
+    grid-template-rows: repeat(3, auto);
+    width: 40rem;
+    row-gap: 1rem;
+    column-gap: 2rem;
+}
+
+.websiteTitleContainer {
+    grid-row: span 1 / 2;
+    grid-column: 2 / 6;
+    align-content: end;
+    font-weight: bold;
+    color: var(--tertiary-color);
+    text-decoration: none;
+    display: flex;
+    gap: .3rem;
+    align-items: end;
+}
+
+.projectTitleContainer:visited {
+    color: var(--tertiary-color);
+}
+
+.websiteContainersTitle {
+    width: 40rem;
+    height: var(--space-xxl);
+    align-content: end;
+    font-weight: bold;
+}
+
+.websiteDuration {
+    grid-column: 1 / 2;
+    grid-row: 1/ 2;
+    align-content: end;
+    text-align: end;
+    font-weight: 100;
+}
+
+.websiteLogo {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    width: var(--space-xxl);
+}
+
+.websiteDescription {
+    grid-column: 2 / 7;
+    grid-row: 2 / 3;
+    font-weight: 300;
+}
+
+/*--------------Util--------------*/
+
 .technologies {
     display: flex;
     flex-direction: row;
@@ -122,6 +191,9 @@ footer {
 .technology {
     color: var(--tertiary-color);
     font-weight: 300;
+}
+
+.arrowLink {
 }
 
 /*--------------About--------------*/

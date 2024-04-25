@@ -3,8 +3,8 @@
     "name": "Waschlounge",
     "startDate": "2015",
     "endDate": "",
-    "description": "",
-    "logo": "",
+    "description": "Maintaining the website. Modified various parts of the original website as products and offers change.",
+    "logo": "waschlounge.jpg",
     "url": "https://www.wasch-lounge.ch/",
     "technologies": [
       {
@@ -14,7 +14,7 @@
         "name": "Javascript"
       },
       {
-        "name": "Css"
+        "name": "CSS"
       }
     ]
   },
@@ -22,8 +22,8 @@
     "name": "Autozentrale Dietikon",
     "startDate": "2020",
     "endDate": "",
-    "description": "",
-    "logo": "",
+    "description": "Although not originally setup by me, I made several changes to the website.",
+    "logo": "autozentrale.webp",
     "url": "https://autozentrale-dietikon.ch/",
     "technologies": [
       {
@@ -33,7 +33,7 @@
         "name": "Javascript"
       },
       {
-        "name": "Css"
+        "name": "CSS"
       },
       {
         "name": "PHP"
