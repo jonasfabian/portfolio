@@ -40,6 +40,13 @@ header {
     z-index: 100;
 }
 
+main {
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    padding: 4rem 0;
+}
+
 .navigation {
     display: flex;
     flex-direction: row;
@@ -117,3 +124,45 @@ footer {
     font-weight: 300;
 }
 
+/*--------------About--------------*/
+
+.aboutContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.nameAndAvatarContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.nameContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.avatar {
+    width: 200px;
+    border-radius: 50%;
+}
+
+.name {
+    margin-bottom: 0;
+}
+
+.aboutTextContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.aboutTextHeader {
+    font-weight: bold;
+}
+
+.aboutText {
+    width: 40rem;
+    font-weight: 300;
+}

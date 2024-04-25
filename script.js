@@ -74,11 +74,38 @@ const renderProjects = (projects) => {
     return projectContainers;
 }
 
+const renderAbout = () => {
+    const aboutContainer = createDomElement('div', [], 'aboutContainer');
+
+    // Avatar, Name and Position Container
+    const nameAndAvatarContainer = createDomElement('div', [], 'nameAndAvatarContainer');
+
+    const avatar = createDomElement('img', ['../assets/profile-image.jpg'], 'avatar');
+
+    const nameContainer = createDomElement('div', [], 'nameContainer');
+    const name = createDomElement('h1', 'Jonas Fabian', 'name');
+    const position = createDomElement('div', 'Product-focused Software Engineer');
+
+    nameContainer.append(name, position);
+    nameAndAvatarContainer.append(avatar, nameContainer);
+
+    // About Text Container
+    const aboutTextContainer = createDomElement('div', [], 'aboutTextContainer');
+    const aboutTextTitle = createDomElement('div', 'About', 'aboutTextHeader');
+    const aboutText = createDomElement('div', 'GM, I\'m Jonas. I enjoy building dynamic, creative products from start to finish. Focused on developing intuitive experiences that constantly grow and improve based on user metrics. Always shipping.', 'aboutText');
+    aboutTextContainer.append(aboutTextTitle, aboutText);
+
+    aboutContainer.append(nameAndAvatarContainer, aboutTextContainer);
+
+    return aboutContainer;
+}
+
 const initializeContent = (jsonName, htmlName) => {
     loadHtmlFile(htmlName)
         .then(html => main.innerHTML = html)
         .then(() => loadJSON(jsonName))
         .then(projects => {
+            main.appendChild(renderAbout())
             projects = projects.sort((p1, p2) => p1.endDate < p2.endDate ? 1 : -1);
             main.appendChild(renderProjects(projects))
         });
