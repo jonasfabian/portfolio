@@ -1,0 +1,43 @@
+[
+  {
+    "name": "Waschlounge",
+    "startDate": "2015",
+    "endDate": "",
+    "description": "",
+    "logo": "",
+    "url": "https://www.wasch-lounge.ch/",
+    "technologies": [
+      {
+        "name": "HTML"
+      },
+      {
+        "name": "Javascript"
+      },
+      {
+        "name": "Css"
+      }
+    ]
+  },
+  {
+    "name": "Autozentrale Dietikon",
+    "startDate": "2020",
+    "endDate": "",
+    "description": "",
+    "logo": "",
+    "url": "https://autozentrale-dietikon.ch/",
+    "technologies": [
+      {
+        "name": "HTML"
+      },
+      {
+        "name": "Javascript"
+      },
+      {
+        "name": "Css"
+      },
+      {
+        "name": "PHP"
+      }
+    ]
+  }
+]

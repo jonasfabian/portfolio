@@ -12,48 +12,62 @@ const loadHtmlFile = (name) => {
 
 const createDomElement = (tag, content, cssClass) => {
     const domElement = document.createElement(tag);
-    // If tag is hyperlink, then add href property
+    if (cssClass) {
+        domElement.classList.add(cssClass);
+    }
     if (tag === 'a') {
-        domElement['href'] = content[0];
-        domElement.append(content[1]);
+        domElement.href = content[0];
+        (content[1] instanceof HTMLElement) ? domElement.appendChild(content[1]) : domElement.innerHTML = content[1];
         return domElement;
     }
-    if (tag === 'img') domElement['src'] = content;
-    if (cssClass) domElement.classList.add(cssClass);
-    domElement.append(content);
+    if (tag === 'img') {
+        domElement.src = content;
+        return domElement;
+    }
+    domElement.innerHTML = content;
     return domElement;
 }
 
+
 const renderProjects = (projects) => {
     const projectContainers = createDomElement('div', [], 'projectContainers');
+    const projectContainersTitle = createDomElement('div', 'Work experience', 'projectContainersTitle');
+    projectContainers.appendChild(projectContainersTitle);
+
     projects.forEach(project => {
         const projectContainer = createDomElement('div', [], 'projectContainer');
 
-        const projectName = createDomElement('span', [project.name]);
+        // Create the project link with the title and arrow icon
+        const arrowLink = createDomElement('img', '../assets/arrow-link.svg', 'arrowLink');
+        const titleSpan = createDomElement('span', project.name);  // Title span element
+        const projectName = createDomElement('a', [project.url, titleSpan], 'projectTitleContainer');  // Project title now an 'a' tag
+        projectName.appendChild(arrowLink);  // Append the arrow icon to the 'a' tag
 
-        // Project duration
-        const projectStartDate = createDomElement('span', [project.startDate]);
-        const projectEndDate = createDomElement('span', [" - " + project.endDate]);
-        const projectDuration = createDomElement('div', []);
+        // Other project details
+        const projectStartDate = createDomElement('span', project.startDate);
+        const projectEndDate = createDomElement('span', " - " + project.endDate);
+        const projectDuration = createDomElement('div', [], 'projectDuration');
         projectDuration.append(projectStartDate);
         projectDuration.append(projectEndDate);
 
-        const projectURL = createDomElement('a', [project.url, project.name]);
-        const projectDescription = createDomElement('span', [project.description]);
-        const projectLogo = createDomElement('img', ['../assets/logos/' + project.logo], 'projectLogo');
-        const projectTechnologies = createDomElement('div', [], 'technologies')
+        const projectDescription = createDomElement('span', project.description, 'projectDescription');
+        const projectLogo = createDomElement('img', '../assets/logos/' + project.logo, 'projectLogo');
+        const projectTechnologies = createDomElement('div', [], 'technologies');
 
-        // Append technologies of project to projectTechnology element
-        project.technologies.forEach(technology => projectTechnologies.append(createDomElement('span', [technology.name], 'technology')));
+        // Append technologies of project to projectTechnologies element
+        project.technologies.forEach((technology, index) => {
+            if (index !== 0 && index !== project.technologies.length )
+                projectTechnologies.appendChild(createDomElement('span', '•', 'technology'));
+            projectTechnologies.append(createDomElement('span', technology.name, 'technology'))
+        });
 
         projectContainer.append(
-            projectName,
+            projectName,  // This now includes both the title and the link
             projectDuration,
-            projectURL,
             projectDescription,
-            projectLogo,
+            // projectLogo,
             projectTechnologies
-        )
+        );
 
         projectContainers.appendChild(projectContainer);
     });
@@ -65,24 +79,9 @@ const initializeContent = (jsonName, htmlName) => {
         .then(html => main.innerHTML = html)
         .then(() => loadJSON(jsonName))
         .then(projects => {
-            renderHeader()
+            projects = projects.sort((p1, p2) => p1.endDate < p2.endDate ? 1 : -1);
             main.appendChild(renderProjects(projects))
         });
-}
-
-const renderHeader = () => {
-    const header = document.getElementsByTagName('header')[0];
-    const nameContainer = createDomElement('div', []);
-    nameContainer.appendChild(createDomElement('span', ['Jonas Fabian']))
-    header.appendChild(nameContainer);
-
-    const navigationContainer = createDomElement('nav', [], 'navigation');
-    navigationContainer.appendChild(createDomElement('a', ['./index.html', 'Home']));
-    navigationContainer.appendChild(createDomElement('a', ['../navigation/about.html', 'About']));
-    navigationContainer.appendChild(createDomElement('a', ['../navigation/contact.html', 'Contact']));
-    navigationContainer.appendChild(createDomElement('a', ['../navigation/portfolio.html', 'Portfolio']));
-    navigationContainer.appendChild(createDomElement('a', ['../navigation/skills.html', 'Skills']));
-    header.appendChild(navigationContainer)
 }
 
 initializeContent('projects', 'portfolio');
