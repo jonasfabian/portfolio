@@ -56,7 +56,7 @@ const renderProjects = (projects) => {
 
         // Append technologies of project to projectTechnologies element
         project.technologies.forEach((technology, index) => {
-            if (index !== 0 && index !== project.technologies.length )
+            if (index !== 0 && index !== project.technologies.length)
                 projectTechnologies.appendChild(createDomElement('span', '•', 'technology'));
             projectTechnologies.append(createDomElement('span', technology.name, 'technology'))
         });
@@ -92,12 +92,26 @@ const renderAbout = () => {
     // About Text Container
     const aboutTextContainer = createDomElement('div', [], 'aboutTextContainer');
     const aboutTextTitle = createDomElement('div', 'About', 'aboutTextHeader');
-    const aboutText = createDomElement('div', 'GM, I\'m Jonas. I enjoy building dynamic, creative products from start to finish. Focused on developing intuitive experiences that constantly grow and improve based on user metrics. Always shipping.', 'aboutText');
+    const aboutText = createDomElement('div', `Good ${parseTimeZone()}, I'm Jonas. I'm passionate about creating innovative products from conception to completion. I specialize in designing user-friendly experiences that evolve and enhance over time through data-driven insights. Committed to consistent delivery.`, 'aboutText');
     aboutTextContainer.append(aboutTextTitle, aboutText);
 
     aboutContainer.append(nameAndAvatarContainer, aboutTextContainer);
 
     return aboutContainer;
+}
+
+/*
+* Checks the clients timezone and return a time of day string accordingly
+* */
+const parseTimeZone = () => {
+    const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const currentTime = new Date();
+    const hours = currentTime.toLocaleTimeString('en-US', {timeZone: userTimeZone, hour: '2-digit', hour12: false});
+    if (hours < 11) return 'morning';
+    if (hours < 13) return 'day';
+    if (hours < 17) return 'afternoon';
+    if (hours < 21) return 'evening';
+    if (hours < 24) return 'night';
 }
 
 const initializeContent = (jsonName, htmlName) => {
