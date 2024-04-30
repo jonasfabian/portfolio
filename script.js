@@ -38,8 +38,7 @@ const parseTimeZone = () => {
     if (hours < 11) return 'morning';
     if (hours < 13) return 'day';
     if (hours < 17) return 'afternoon';
-    if (hours < 21) return 'evening';
-    if (hours < 24) return 'night';
+    if (hours < 24) return 'evening';
 }
 
 const renderAbout = () => {
