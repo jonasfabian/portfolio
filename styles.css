@@ -16,6 +16,8 @@
     font-family: SFRounded, ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-feature-settings: normal;
     font-variation-settings: normal;
+
+    font-size: 1rem;
 }
 
 body {
@@ -23,21 +25,6 @@ body {
     height: 100%;
     overflow-y: auto;
     margin: 0;
-}
-
-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    height: var(--space-lg);
-    background-color: var(--primary-color);
-
-    /* Make header sticky */
-    position: sticky;
-    top: 0;
-    z-index: 100;
 }
 
 main {
@@ -239,3 +226,45 @@ footer {
     width: 40rem;
     font-weight: 300;
 }
+
+@media screen and (max-width: 500px), screen and (orientation: portrait) {
+    main {
+        width: 100%;
+        padding: 6rem 0;
+    }
+
+    .aboutContainer {
+        font-size: 4rem;
+    }
+
+    .nameAndAvatarContainer {
+        flex-direction: column;
+        align-items: center;
+        gap: 4rem;
+    }
+
+    .avatar {
+        width: 80%;
+        height: 80%;
+    }
+
+    .name {
+        margin: 0;
+    }
+
+    .aboutText {
+        width: 100%;
+    }
+
+    .projectContainer {
+        width: 100%;
+        grid-template-columns: 1fr repeat(5, 1fr);
+    }
+
+    .websiteContainer {
+        width: 100%;
+        grid-template-columns: 1fr repeat(5, 1fr);
+    }
+
+}
+
