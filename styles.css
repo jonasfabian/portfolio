@@ -230,11 +230,12 @@ footer {
 @media screen and (max-width: 500px), screen and (orientation: portrait) {
     main {
         width: 100%;
-        padding: 6rem 0;
+        padding: 6rem 4rem;
     }
 
     .aboutContainer {
         font-size: 4rem;
+        gap: 10rem;
     }
 
     .nameAndAvatarContainer {
@@ -256,15 +257,41 @@ footer {
         width: 100%;
     }
 
-    .projectContainer {
+    .projectContainersTitle, .websiteContainersTitle {
+        font-size: 4rem;
         width: 100%;
-        grid-template-columns: 1fr repeat(5, 1fr);
     }
 
-    .websiteContainer {
-        width: 100%;
-        grid-template-columns: 1fr repeat(5, 1fr);
+    .projectContainers, .websiteContainers {
+        align-items: normal;
+        gap: 16rem;
+        padding-top: 16rem;
     }
 
+    .projectContainer, .websiteContainer {
+        width: 100%;
+        grid-template-columns: 1fr repeat(5, 1fr);
+        font-size: 4rem;
+        display: block;
+    }
+
+    .projectDuration, .websiteDuration {
+        text-align: start;
+    }
+
+    .technologies {
+        flex-wrap: wrap;
+    }
+
+    footer {
+        padding-bottom: 8rem;
+    }
+
+    .socials-container {
+        gap: 8rem;
+    }
+
+    .social-icon {
+        width: 8rem;
+    }
 }
-
