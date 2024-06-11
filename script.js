@@ -1,13 +1,13 @@
 const main = document.getElementsByTagName("main")[0];
 
-const loadJSON = (name) => {
-    return fetch(`../data/${name}.json`)
-        .then(res => res.json());
+const loadJSON = async (name) => {
+    const res = await fetch(`../data/${name}.json`);
+    return res.json();
 }
 
-const loadHtmlFile = (name) => {
-    return fetch(`../navigation/${name}.html`)
-        .then(res => res.text());
+const loadHtmlFile = async (name) => {
+    const res = await fetch(`../navigation/${name}.html`);
+    return res.text();
 }
 
 const createDomElement = (tag, content, cssClass) => {
@@ -157,22 +157,19 @@ const renderWebsites = (websites) => {
     return websiteContainers;
 }
 
-const initializeContent = (jsonName, htmlName) => {
-    loadHtmlFile(htmlName)
-        .then(html => {
-            main.innerHTML = html;
-            return Promise.all([loadJSON(jsonName), loadJSON('websites')]);
-        })
-        .then(([projects, websites]) => {
-            projects = projects.sort((p1, p2) => p1.endDate < p2.endDate ? 1 : -1);
-            websites = websites.sort((p1, p2) => p1.startDate < p2.startDate ? 1 : -1);
-            main.appendChild(renderAbout());
-            main.appendChild(renderProjects(projects));
-            main.appendChild(renderWebsites(websites));
-        })
-        .catch(error => {
-            console.error('Failed to load data:', error); // Error handling
-        });
+const initializeContent = async (jsonName, htmlName) => {
+    try {
+        const html = await loadHtmlFile(htmlName);
+        main.innerHTML = html;
+        const [projects, websites] = await Promise.all([loadJSON(jsonName), loadJSON('websites')]);
+        projects.sort((p1, p2) => p1.endDate < p2.endDate ? 1 : -1);
+        websites.sort((p1, p2) => p1.startDate < p2.startDate ? 1 : -1);
+        main.appendChild(renderAbout());
+        main.appendChild(renderProjects(projects));
+        main.appendChild(renderWebsites(websites));
+    } catch (error) {
+        console.error('Failed to load data:', error);
+    }
 }
 
 initializeContent('projects', 'portfolio');
