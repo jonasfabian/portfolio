@@ -20,13 +20,6 @@
     font-size: 1rem;
 }
 
-body {
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-    margin: 0;
-}
-
 main {
     margin-left: auto;
     margin-right: auto;
@@ -62,6 +55,7 @@ footer {
 }
 
 .projectTitleContainer {
+    position: relative;
     grid-row: span 1 / 2;
     grid-column: 2 / 6;
     align-content: end;
@@ -82,6 +76,10 @@ footer {
     height: var(--space-xxl);
     align-content: end;
     font-weight: bold;
+    background-color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .projectDuration {
@@ -102,6 +100,7 @@ footer {
     grid-column: 2 / 7;
     grid-row: 2 / 3;
     font-weight: 300;
+    position: relative;
 }
 
 /*--------------Websites--------------*/
@@ -143,6 +142,10 @@ footer {
     height: var(--space-xxl);
     align-content: end;
     font-weight: bold;
+    background-color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .websiteDuration {

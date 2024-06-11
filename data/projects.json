@@ -52,10 +52,10 @@
         "name": "Java"
       },
       {
-        "name": "SpringBoot"
+        "name": "Spring"
       },
       {
-        "name": "CI/CD"
+        "name": "Docker"
       }
     ]
   }

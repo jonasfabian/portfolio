@@ -1,5 +1,24 @@
 [
   {
+    "name": "Eggcellet Riddler",
+    "startDate": "2024",
+    "endDate": "",
+    "description": "A collaborative multiplayer puzzle game. Goal of the game is to fill in the grid with Shapes, so all of the grid is covered.",
+    "logo": "",
+    "url": "https://eggcellent-riddler.ch/",
+    "technologies": [
+      {
+        "name": "WebSockets"
+      },
+      {
+        "name": "Spring"
+      },
+      {
+        "name": "MongoDB"
+      }
+    ]
+  },
+  {
     "name": "Waschlounge",
     "startDate": "2015",
     "endDate": "",

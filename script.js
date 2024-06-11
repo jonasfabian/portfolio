@@ -89,7 +89,6 @@ const renderProjects = (projects) => {
         projectDuration.append(projectEndDate);
 
         const projectDescription = createDomElement('span', project.description, 'projectDescription');
-        const projectLogo = createDomElement('img', '../assets/logos/' + project.logo, 'projectLogo');
         const projectTechnologies = createDomElement('div', [], 'technologies');
 
         // Append technologies of project to projectTechnologies element
@@ -103,7 +102,6 @@ const renderProjects = (projects) => {
             projectName,  // This now includes both the title and the link
             projectDuration,
             projectDescription,
-            // projectLogo,
             projectTechnologies
         );
 
@@ -134,7 +132,6 @@ const renderWebsites = (websites) => {
         websiteName.append(websiteEndDate);
 
         const websiteDescription = createDomElement('span', website.description, 'websiteDescription');
-        const websiteLogo = createDomElement('img', '../assets/logos/' + website.logo, 'websiteLogo');
         const websiteTechnologies = createDomElement('div', [], 'technologies');
 
         // Append technologies of project to projectTechnologies element
@@ -148,7 +145,6 @@ const renderWebsites = (websites) => {
             websiteName,  // This now includes both the title and the link
             websiteDuration,
             websiteDescription,
-            // projectLogo,
             websiteTechnologies
         );
 
