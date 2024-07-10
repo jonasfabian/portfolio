@@ -6,7 +6,7 @@ const loadJSON = async (name) => {
 }
 
 const loadHtmlFile = async (name) => {
-    const res = await fetch(`../navigation/${name}.html`);
+    const res = await fetch(`../${name}.html`);
     return res.text();
 }
 
