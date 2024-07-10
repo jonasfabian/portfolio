@@ -24,6 +24,7 @@
     justify-content: center;
     display: flex;
     align-items: center;
+    flex-direction: column;
     height: 100vh;
     margin: 0;
 }
@@ -305,4 +306,16 @@ footer {
     .social-icon {
         width: 8rem;
     }
+}
+
+/*--------- Snake ---------*/
+
+.tick-rate-wrapper {
+    display: flex;
+    display: none!important;
+}
+
+#tick-rate-display {
+    display: block;
+    width: 2.5rem;
 }
