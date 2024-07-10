@@ -173,11 +173,6 @@ const getPlayerCollisionItem = () => {
     return itemList.find(item => checkCollision(player, item));
 }
 
-const playerHasCollisionWithTail = () => {
-    const headPosition = { x: player.position.x, y: player.position.y };
-    return player.tail.slice(1).some(t => t.x === headPosition.x && t.y === headPosition.y);
-}
-
 setInterval(() => {
     // Save current head position before moving
     const currentHeadPosition = { x: player.position.x, y: player.position.y };
