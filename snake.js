@@ -3,10 +3,29 @@ Number.prototype.mod = function (n) {
     return ((this % n) + n) % n;
 };
 
-const REFRESH_RATE = 60;
 const CELL_SIZE = 20;
 const CANVAS_WIDTH = 300;
 const CANVAS_HEIGHT = 300;
+
+const min = 0;
+const max = 60;
+let value = 10;
+let tickRate = value; // Initialize tickRate to the initial value of the slider
+let intervalId;
+const tickRateDisplay = document.getElementById("tick-rate-display");
+const tickRateSlider = document.getElementById("tick-rate-slider");
+
+tickRateSlider.min = min;
+tickRateSlider.max = max;
+tickRateSlider.value = value;
+tickRateDisplay.innerHTML = value;
+
+tickRateSlider.oninput = () => {
+    value = tickRateSlider.value;
+    tickRateDisplay.innerHTML = value;
+    tickRate = value > 0 ? value : 1; // Ensure tickRate is at least 1 to avoid division by zero
+    resetInterval();
+}
 
 let canvas;
 let ctx;
@@ -173,12 +192,15 @@ const getPlayerCollisionItem = () => {
     return itemList.find(item => checkCollision(player, item));
 }
 
-const playerHasCollisionWithTail = () => {
-    const headPosition = { x: player.position.x, y: player.position.y };
-    return player.tail.slice(1).some(t => t.x === headPosition.x && t.y === headPosition.y);
+/**
+ * Resets the interval based on the tick rate
+ * */
+const resetInterval = () => {
+    clearInterval(intervalId);
+    intervalId = setInterval(gameLoop, 1000 / tickRate);
 }
 
-setInterval(() => {
+const gameLoop = () => {
     // Save current head position before moving
     const currentHeadPosition = { x: player.position.x, y: player.position.y };
 
@@ -235,7 +257,10 @@ setInterval(() => {
     }
 
     redraw();
-}, REFRESH_RATE);
+}
+
+// Start the initial game loop
+resetInterval();
 
 document.addEventListener('keydown', function (e) {
     switch (e.key) {
@@ -256,5 +281,4 @@ document.addEventListener('keydown', function (e) {
             directionState = 'RIGHT';
             break;
     }
-})
-
+});
