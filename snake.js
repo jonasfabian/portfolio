@@ -12,8 +12,12 @@ const max = 60;
 let value = 10;
 let tickRate = value; // Initialize tickRate to the initial value of the slider
 let intervalId;
+
+let score = 0;
+
 const tickRateDisplay = document.getElementById("tick-rate-display");
 const tickRateSlider = document.getElementById("tick-rate-slider");
+const scoreDisplay = document.getElementById("score");
 
 tickRateSlider.min = min;
 tickRateSlider.max = max;
@@ -153,6 +157,16 @@ const redraw = () => {
     drawItems(ctx);
 }
 
+const initScore = () => {
+    score = 0;
+    scoreDisplay.innerHTML = score;
+}
+
+const updateScore = (value) => {
+    score += value;
+    scoreDisplay.innerHTML = score;
+}
+
 /**
  * Initializes the canvas
  * */
@@ -167,6 +181,7 @@ const initCanvas = () => {
     drawPlayer(ctx);
     addRandomItem();
     drawItems(ctx);
+    initScore();
 }
 initCanvas();
 
@@ -235,6 +250,7 @@ const gameLoop = () => {
     // Check for collision with items
     const collisionItem = getPlayerCollisionItem();
     if (collisionItem) {
+        updateScore(10);
         // Add a new segment to the tail at the end of the tail
         if (player.tail.length > 0) {
             const lastTailSegment = player.tail[player.tail.length - 1];
