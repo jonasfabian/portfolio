@@ -1,5 +1,5 @@
 const main = document.getElementsByTagName("main")[0];
-const section = document.getElementById("test");
+const section = document.getElementById("language");
 
 const loadJSON = async (name) => {
     const res = await fetch(`../data/${name}.json`);
@@ -33,14 +33,14 @@ const createDomElement = (tag, content, cssClass) => {
 /*
 * Checks the clients timezone and return a time of day string accordingly
 * */
-const parseTimeZone = () => {
+const parseTimeZone = (translations) => {
     const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const currentTime = new Date();
     const hours = currentTime.toLocaleTimeString('en-US', { timeZone: userTimeZone, hour: '2-digit', hour12: false });
-    if (hours < 11) return 'morning';
-    if (hours < 13) return 'day';
-    if (hours < 17) return 'afternoon';
-    if (hours < 24) return 'evening';
+    if (hours < 11) return translations.morning;
+    if (hours < 13) return translations.day;
+    if (hours < 17) return translations.afternoon;
+    if (hours < 24) return translations.evening;
 }
 
 const renderAbout = (aboutData, translations) => {
@@ -61,7 +61,7 @@ const renderAbout = (aboutData, translations) => {
     // About Text Container
     const aboutTextContainer = createDomElement('div', [], 'aboutTextContainer');
     const aboutTextTitle = createDomElement('div', translations.aboutMe, 'aboutTextHeader');
-    const aboutText = createDomElement('div', `${aboutData.greeting} ${parseTimeZone()}, ${aboutData.aboutText}`, 'aboutText');
+    const aboutText = createDomElement('div', `${aboutData.greeting} ${parseTimeZone(translations)}, ${aboutData.aboutText}`, 'aboutText');
     aboutTextContainer.append(aboutTextTitle, aboutText);
 
     aboutContainer.append(nameAndAvatarContainer, aboutTextContainer);

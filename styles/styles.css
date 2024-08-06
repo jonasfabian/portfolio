@@ -312,7 +312,7 @@ footer {
     }
 }
 
-#test {
+#language {
     position: fixed;
     bottom: var(--space-unit);
     display: flex;
