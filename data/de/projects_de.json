@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Visual Karsys",
+    "startDate": "2018",
+    "endDate": "2019",
+    "description": "Als Hauptentwickler des Frontends für Visual KARSYS habe ich die Benutzerinteraktion und die Datenvisualisierungsfähigkeiten verbessert. Visual KARSYS ist eine Softwareplattform für das Management von Karstgrundwasser und bietet Werkzeuge zur Bewertung von Aquifergeometrien und Flusssystemen. Es unterstützt verschiedene Anwendungen, einschließlich Grundwassergewinnung, Bauingenieurwesen, Geothermieprojekte, Naturgefahren und Abfallmanagement in Karstgebieten.",
+    "logo": "visual_karsys.jpeg",
+    "url": "https://www.visualkarsys.com/",
+    "technologies": [
+      {
+        "name": "Angular"
+      },
+      {
+        "name": "Typescript"
+      },
+      {
+        "name": "PostgreSQL"
+      },
+      {
+        "name": "CSS"
+      }
+    ]
+  },
+  {
+    "name": "Schweizer Dialektsammlung",
+    "startDate": "2020",
+    "endDate": "2021",
+    "description": "Ich habe hauptsächlich das Labeling-Tool und Teile der Website selbst für die Schweizer Dialektsammlung App entwickelt, ein nationales Forschungsprojekt von ZHAW und FHNW, das sich auf das Sammeln von lokalen Dialektaufnahmen konzentriert. Durch eine einfache App kann die Öffentlichkeit Sprachaufnahmen beisteuern, die dann digitalisiert werden, um wichtige Computerprogramme zu trainieren.",
+    "logo": "schweizer_dialektsammlung.jpg",
+    "url": "https://swissnlp.org/home/activities/die-schweizer-dialektsammlung/",
+    "technologies": [
+      {
+        "name": "Typescript"
+      },
+      {
+        "name": "React"
+      }
+    ]
+  },
+  {
+    "name": "Studenthub",
+    "startDate": "2020",
+    "endDate": "Present",
+    "description": "Als Teamleiter und Entwickler habe ich Studenthub von Grund auf neu gestaltet, ursprünglich zugeschnitten auf das Data Science Programm der FHNW. Diese Plattform hilft, den Fortschritt der Studierenden zu verfolgen und die Kurswahl zu erleichtern. Da sie weiterentwickelt wurde, um breitere Bedürfnisse innerhalb der FHNW HT zu erfüllen, bietet Studenthub jetzt detaillierte grafische Übersichten über Kurse, Noten und Programmstrukturen, mit zukünftigen Plänen zur weiteren Verbesserung der Kursplanungsfunktionen.",
+    "logo": "fhnw.svg",
+    "url": "https://studenthub.technik.fhnw.ch/",
+    "technologies": [
+      {
+        "name": "Angular"
+      },
+      {
+        "name": "Java"
+      },
+      {
+        "name": "Spring"
+      },
+      {
+        "name": "Docker"
+      }
+    ]
+  }
+]

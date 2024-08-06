@@ -7,28 +7,37 @@ const CELL_SIZE = 20;
 const CANVAS_WIDTH = 300;
 const CANVAS_HEIGHT = 300;
 
-const min = 0;
-const max = 60;
-let value = 10;
-let tickRate = value; // Initialize tickRate to the initial value of the slider
+let isPaused = false;
+
+let DEFAULT_TICK_RATE = 10;
+let tickRate; // Initialize tickRate to the initial value of the slider
+const setTickRate = (value) => {
+    tickRate = value;
+    tickRateDisplay.innerHTML = tickRate;
+}
 let intervalId;
+
+let highscore = localStorage.getItem("highscore");
 
 let score = 0;
 
 const tickRateDisplay = document.getElementById("tick-rate-display");
-const tickRateSlider = document.getElementById("tick-rate-slider");
 const scoreDisplay = document.getElementById("score");
+const highScoreDisplay = document.getElementById("highscore");
 
-tickRateSlider.min = min;
-tickRateSlider.max = max;
-tickRateSlider.value = value;
-tickRateDisplay.innerHTML = value;
-
-tickRateSlider.oninput = () => {
-    value = tickRateSlider.value;
-    tickRateDisplay.innerHTML = value;
-    tickRate = value > 0 ? value : 1; // Ensure tickRate is at least 1 to avoid division by zero
-    resetInterval();
+const itemTypes = () => {
+    return [
+        {
+            name: "SPEEDUP",
+            color: "orange",
+            effect: () => setTickRate(tickRate * 1.2)
+        },
+        {
+            name: "SLOWDOWN",
+            color: "blue",
+            effect: () => setTickRate(tickRate * 0.8)
+        }
+    ]
 }
 
 let canvas;
@@ -108,7 +117,7 @@ const initPlayer = () => {
 /**
  * Adds an item to the items-list
  * */
-const addItem = (x, y) => {
+const addItem = (x, y, type) => {
     itemList.push(
         {
             color: "",
@@ -117,7 +126,8 @@ const addItem = (x, y) => {
             position: {
                 x: x,
                 y: y
-            }
+            },
+            type: type
         }
     );
 }
@@ -126,8 +136,10 @@ const addItem = (x, y) => {
  * Adds a random item to the grid
  * */
 const addRandomItem = () => {
+    const randomItemTypeIndex = Math.floor(Math.random() * itemTypes().length);
+    const randomItemType = itemTypes()[randomItemTypeIndex];
     const randomCoordinates = getRandomCoordinates();
-    addItem(randomCoordinates.x, randomCoordinates.y);
+    addItem(randomCoordinates.x, randomCoordinates.y, randomItemType);
 }
 
 /**
@@ -145,7 +157,7 @@ const getRandomCoordinates = () => {
  * */
 const drawItems = (ctx) => {
     itemList.forEach(item =>
-        drawRectangle(item.position.x, item.position.y, item.width, item.height, "green", ctx));
+        drawRectangle(item.position.x, item.position.y, item.width, item.height, item.type.color, ctx));
 }
 
 /**
@@ -167,6 +179,21 @@ const updateScore = (value) => {
     scoreDisplay.innerHTML = score;
 }
 
+const initHighscore = () => {
+    if (localStorage.getItem("highscore")) {
+        highscore = localStorage.getItem("highscore");
+        updateHighscore(highscore);
+    } else {
+        updateHighscore(0);
+    }
+}
+
+const updateHighscore = (value) => {
+    highscore = value;
+    localStorage.setItem("highscore", highscore);
+    highScoreDisplay.innerHTML = value;
+}
+
 /**
  * Initializes the canvas
  * */
@@ -181,7 +208,9 @@ const initCanvas = () => {
     drawPlayer(ctx);
     addRandomItem();
     drawItems(ctx);
+    initHighscore();
     initScore();
+    setTickRate(DEFAULT_TICK_RATE);
 }
 initCanvas();
 
@@ -205,6 +234,21 @@ const checkCollision = (item1, item2) => {
  * */
 const getPlayerCollisionItem = () => {
     return itemList.find(item => checkCollision(player, item));
+}
+
+const togglePause = () => {
+    isPaused = !isPaused;
+    let overlay = document.getElementById("canvas-overlay");
+    overlay.style.width = CANVAS_WIDTH + "px";
+    overlay.style.height = CANVAS_HEIGHT + "px";
+
+    if (isPaused) {
+        overlay.style.visibility = "visible";
+        clearInterval(intervalId);
+    } else {
+        overlay.style.visibility = "hidden";
+        resetInterval();
+    }
 }
 
 /**
@@ -251,6 +295,19 @@ const gameLoop = () => {
     const collisionItem = getPlayerCollisionItem();
     if (collisionItem) {
         updateScore(10);
+        if (score >= highscore) {
+            updateHighscore(score)
+        }
+        switch (collisionItem.type.name) {
+            case "SPEEDUP" :
+                collisionItem.type.effect();
+                resetInterval();
+                break;
+            case "SLOWDOWN" :
+                collisionItem.type.effect();
+                resetInterval();
+                break;
+        }
         // Add a new segment to the tail at the end of the tail
         if (player.tail.length > 0) {
             const lastTailSegment = player.tail[player.tail.length - 1];
@@ -295,6 +352,9 @@ document.addEventListener('keydown', function (e) {
         case 'd' :
             if (directionState === 'LEFT') break;
             directionState = 'RIGHT';
+            break;
+        case ' ':
+            togglePause();
             break;
     }
 });

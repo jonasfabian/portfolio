@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Eggcellet Riddler",
+    "startDate": "2024",
+    "endDate": "",
+    "description": "Ein kollaboratives Multiplayer-Puzzlespiel. Ziel des Spiels ist es, das Raster mit Formen zu füllen, sodass das gesamte Raster abgedeckt ist.",
+    "logo": "",
+    "url": "https://eggcellent-riddler.ch/",
+    "technologies": [
+      {
+        "name": "WebSockets"
+      },
+      {
+        "name": "Spring"
+      },
+      {
+        "name": "MongoDB"
+      }
+    ]
+  },
+  {
+    "name": "Waschlounge",
+    "startDate": "2015",
+    "endDate": "",
+    "description": "Wartung der Website. Verschiedene Teile der ursprünglichen Website wurden geändert, um Produkte und Angebote anzupassen.",
+    "logo": "waschlounge.jpg",
+    "url": "https://www.wasch-lounge.ch/",
+    "technologies": [
+      {
+        "name": "HTML"
+      },
+      {
+        "name": "Javascript"
+      },
+      {
+        "name": "CSS"
+      }
+    ]
+  },
+  {
+    "name": "Autozentrale Dietikon",
+    "startDate": "2020",
+    "endDate": "",
+    "description": "Obwohl die Website nicht ursprünglich von mir eingerichtet wurde, habe ich mehrere Änderungen daran vorgenommen.",
+    "logo": "autozentrale.webp",
+    "url": "https://autozentrale-dietikon.ch/",
+    "technologies": [
+      {
+        "name": "HTML"
+      },
+      {
+        "name": "Javascript"
+      },
+      {
+        "name": "CSS"
+      },
+      {
+        "name": "PHP"
+      }
+    ]
+  }
+]

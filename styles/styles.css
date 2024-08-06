@@ -29,6 +29,10 @@
     margin: 0;
 }
 
+body {
+    display: flex;
+}
+
 main {
     margin-left: auto;
     margin-right: auto;
@@ -308,12 +312,15 @@ footer {
     }
 }
 
-/*--------- Snake ---------*/
-
-.tick-rate-wrapper {
+#test {
+    position: fixed;
+    bottom: var(--space-unit);
     display: flex;
-    display: none!important;
+    gap: var(--space-unit);
+    align-items: end;
 }
+
+/*--------- Snake ---------*/
 
 #tick-rate-display {
     display: block;

@@ -1,0 +1,12 @@
+{
+  "name": "Jonas Fabian",
+  "position": "Passionate Software Engineer ",
+  "greeting": "Good",
+  "aboutText": "I'm Jonas. I'm passionate about creating innovative products from conception to completion. I specialize in designing user-friendly experiences that evolve and enhance over time through data-driven insights. Committed to consistent delivery.",
+  "translations": {
+    "workExperience": "Work experience",
+    "aboutMe": "About me",
+    "otherProjects": "Other Projects",
+    "present": "Present"
+  }
+}

@@ -7,16 +7,28 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://jonasfabian.com/snake">
     <title>Jonas Fabian</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/styles.css">
     <link rel="icon" type="image/x-icon" href="./assets/favicon-32x32.png">
 </head>
 <body id="snake-body">
-<span id="score"></span>
-<div class="tick-rate-wrapper">
-    <label id="tick-rate-display" for="tick-rate-slider"></label>
-    <input id="tick-rate-slider" name="tick-rate-slider" type="range"/>
+<div style="display: flex;">
+    <span>Highscore: </span>
+    <span id="highscore"></span>
 </div>
-<canvas id="canvas"></canvas>
-<script src="snake.js"></script>
+<div style="display: flex;">
+    <span>Score: </span>
+    <span id="score"></span>
+</div>
+<div style="display: flex;">
+    <span>Tick-Rate: </span>
+    <span id="tick-rate-display"></span>
+</div>
+<div style="position: relative;">
+    <div style="visibility: hidden; background-color: rgba(100, 100, 100, 0.4); backdrop-filter: blur(5px); position: absolute; display: flex; justify-content: center; align-items: center;" id="canvas-overlay">
+        <span>Paused</span>
+    </div>
+    <canvas id="canvas"></canvas>
+</div>
+<script src="scripts/snake.js"></script>
 </body>
 </html>
