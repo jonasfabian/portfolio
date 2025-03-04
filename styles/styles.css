@@ -20,17 +20,10 @@
     font-size: 1rem;
 }
 
-#snake-body {
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    height: 100vh;
-    margin: 0;
-}
-
 body {
     display: flex;
+    margin: 0;
+    padding: 0;
 }
 
 main {
@@ -38,15 +31,6 @@ main {
     margin-right: auto;
     width: fit-content;
     padding: 4rem 0;
-}
-
-footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    height: var(--space-xxl);
 }
 
 /*--------------Projects--------------*/
@@ -103,12 +87,6 @@ footer {
     text-align: end;
 }
 
-.projectLogo {
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
-    width: var(--space-xxl);
-}
-
 .projectDescription {
     grid-column: 2 / 7;
     grid-row: 2 / 3;
@@ -146,7 +124,7 @@ footer {
     align-items: end;
 }
 
-.projectTitleContainer:visited {
+.websiteTitleContainer:visited {
     color: var(--tertiary-color);
 }
 
@@ -167,12 +145,6 @@ footer {
     align-content: end;
     text-align: end;
     font-weight: 100;
-}
-
-.websiteLogo {
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
-    width: var(--space-xxl);
 }
 
 .websiteDescription {
@@ -197,6 +169,8 @@ footer {
 }
 
 .arrowLink {
+    stroke: var(--tertiary-color);
+    margin-bottom: 2px;
 }
 
 /*--------------About--------------*/
@@ -205,6 +179,7 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    margin-bottom: 2rem;
 }
 
 .nameAndAvatarContainer {
@@ -298,31 +273,4 @@ footer {
     .technologies {
         flex-wrap: wrap;
     }
-
-    footer {
-        padding-bottom: 8rem;
-    }
-
-    .socials-container {
-        gap: 8rem;
-    }
-
-    .social-icon {
-        width: 8rem;
-    }
-}
-
-#language {
-    position: fixed;
-    bottom: var(--space-unit);
-    display: flex;
-    gap: var(--space-unit);
-    align-items: end;
-}
-
-/*--------- Snake ---------*/
-
-#tick-rate-display {
-    display: block;
-    width: 2.5rem;
 }
