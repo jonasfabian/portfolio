@@ -12,6 +12,14 @@
     --secondary-color: #ADF5FF;
     --tertiary-color: #0075A2;
 
+    /* Light theme variables (default) */
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --card-border: #e0e0e0;
+    --technology-text: #666666;
+    --footer-text: #666666;
+    --shadow: rgba(0, 0, 0, 0.1);
+
     tab-size: 4;
     font-family: SFRounded, ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-feature-settings: normal;
@@ -20,10 +28,35 @@
     font-size: 1rem;
 }
 
+/* Dark theme variables */
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --card-border: #333333;
+    --technology-text: #b0b0b0;
+    --footer-text: #b0b0b0;
+    --shadow: rgba(0, 0, 0, 0.4);
+}
+
+/* Ocean theme variables */
+[data-theme="ocean"] {
+    --bg-color: #0a192f;
+    --text-color: #e6f1ff;
+    --card-border: #1e3a8a;
+    --technology-text: #8892b0;
+    --footer-text: #8892b0;
+    --shadow: rgba(10, 25, 47, 0.4);
+    --tertiary-color: #64ffda;
+}
+
+/* Apply variables to elements */
 body {
     display: flex;
     margin: 0;
     padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 main {
@@ -52,6 +85,7 @@ main {
     row-gap: 1rem;
     column-gap: 2rem;
     max-width: 100%;
+    border-color: var(--card-border);
 }
 
 .projectTitleContainer {
@@ -77,10 +111,9 @@ main {
     height: var(--space-xxl);
     align-content: end;
     font-weight: bold;
-    background-color: white;
-    position: sticky;
     top: 0;
     z-index: 1;
+    color: var(--text-color);
 }
 
 .projectDuration {
@@ -115,6 +148,7 @@ main {
     max-width: 100%;
     row-gap: 1rem;
     column-gap: 2rem;
+    border-color: var(--card-border);
 }
 
 .websiteTitleContainer {
@@ -139,10 +173,9 @@ main {
     height: var(--space-xxl);
     align-content: end;
     font-weight: bold;
-    background-color: white;
-    position: sticky;
     top: 0;
     z-index: 1;
+    color: var(--text-color);
 }
 
 .websiteDuration {
@@ -171,7 +204,7 @@ main {
 }
 
 .technology {
-    color: var(--tertiary-color);
+    color: var(--technology-text);
     font-weight: 300;
 }
 
@@ -228,101 +261,77 @@ main {
     font-weight: 300;
 }
 
-@media screen and (max-width: 768px) {
-    main {
-        width: 100%;
-        padding: 2rem 1.25rem;
-    }
+/*--------------Theme Stuff--------------*/
 
-    .aboutContainer {
-        font-size: 1rem;
-        gap: 1.5rem;
-    }
-
-    .nameAndAvatarContainer {
-        flex-direction: column;
-        align-items: center;
-        gap: 1.5rem;
-    }
-
-    .nameContainer {
-        text-align: center;
-    }
-
-    .avatar {
-        width: 150px;
-        height: 150px;
-    }
-
-    .name {
-        margin: 0;
-    }
-
-    .aboutText {
-        width: 100%;
-    }
-
-    .projectContainersTitle, .websiteContainersTitle {
-        width: 100%;
-        font-size: 1.5rem;
-        height: auto;
-        margin-bottom: 1rem;
-    }
-
-    .projectContainers, .websiteContainers {
-        align-items: center;
-        gap: 3rem;
-        padding-top: 1.5rem;
-        width: 100%;
-    }
-
-    .projectContainer, .websiteContainer {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-    }
-
-    .projectTitleContainer, .websiteTitleContainer {
-        margin-bottom: 0.5rem;
-    }
-
-    .projectDuration, .websiteDuration {
-        text-align: left;
-        margin-bottom: 0.5rem;
-        font-size: 0.9rem;
-    }
-
-    .projectDescription, .websiteDescription {
-        margin-bottom: 1rem;
-    }
-
-    .technologies {
-        margin-top: 0.5rem;
-    }
+.theme-selector {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
 }
 
-@media screen and (max-width: 480px) {
-    main {
-        padding: 1.5rem 1rem;
-    }
+#theme-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--card-border);
+    background-color: var(--bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px var(--shadow);
+    position: relative;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    padding: 0;
+}
 
-    .avatar {
-        width: 120px;
-        height: 120px;
-    }
+.theme-icon {
+    position: absolute;
+    color: var(--text-color);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: scale(0.5);
+}
 
-    .technology {
-        font-size: 0.9rem;
-    }
+body:not([data-theme]) .light-icon,
+body[data-theme="light"] .light-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+body[data-theme="dark"] .dark-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+body[data-theme="ocean"] .ocean-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+[data-theme="dark"] svg {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .socialIcon {
+    fill: var(--text-color);
+}
+
+[data-theme="ocean"] svg {
+    color: var(--text-color);
+}
+
+[data-theme="ocean"] .socialIcon {
+    fill: var(--text-color);
 }
 
 .footer {
     width: 100%;
-    background-color: white;
     padding: var(--space-md) 0;
     border-top: 1px solid #eaeaea;
     margin-top: var(--space-xxl);
+    color: var(--footer-text);
 }
 
 .footerContainer {
@@ -364,6 +373,86 @@ main {
     color: var(--tertiary-color);
 }
 
+@media screen and (max-width: 768px) {
+    main {
+        width: 100%;
+        padding: 2rem 1.25rem;
+    }
+
+    .aboutContainer {
+        font-size: 1rem;
+        gap: 1.5rem;
+    }
+
+    .nameAndAvatarContainer {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .nameContainer {
+        text-align: center;
+    }
+
+    .avatar {
+        width: 150px;
+        height: 150px;
+    }
+
+    .name {
+        margin: 0;
+    }
+
+    .aboutText {
+        width: 100%;
+    }
+
+    .projectContainersTitle,
+    .websiteContainersTitle {
+        width: 100%;
+        font-size: 1.5rem;
+        height: auto;
+        margin-bottom: 1rem;
+    }
+
+    .projectContainers,
+    .websiteContainers {
+        align-items: center;
+        gap: 3rem;
+        padding-top: 1.5rem;
+        width: 100%;
+    }
+
+    .projectContainer,
+    .websiteContainer {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .projectTitleContainer,
+    .websiteTitleContainer {
+        margin-bottom: 0.5rem;
+    }
+
+    .projectDuration,
+    .websiteDuration {
+        text-align: left;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .projectDescription,
+    .websiteDescription {
+        margin-bottom: 1rem;
+    }
+
+    .technologies {
+        margin-top: 0.5rem;
+    }
+}
+
 @media screen and (max-width: 600px) {
     .footerContainer {
         flex-direction: column;
@@ -377,5 +466,20 @@ main {
     .socialIcon {
         width: 20px;
         height: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    main {
+        padding: 1.5rem 1rem;
+    }
+
+    .avatar {
+        width: 120px;
+        height: 120px;
+    }
+
+    .technology {
+        font-size: 0.9rem;
     }
 }
