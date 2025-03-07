@@ -483,3 +483,20 @@ body[data-theme="ocean"] .ocean-icon {
         font-size: 0.9rem;
     }
 }
+
+.portfolioLink {
+    color: var(--tertiary-color);
+    text-decoration: none;
+    font-weight: 300;
+    transition: opacity 0.2s ease;
+}
+
+.portfolioLink:hover {
+    opacity: 0.8;
+}
+
+@media screen and (max-width: 600px) {
+    .copyright {
+        text-align: center;
+    }
+}
