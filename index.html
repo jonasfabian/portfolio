@@ -123,7 +123,7 @@
 
         <section class="projectContainers" id="personal-projects-section">
             <h2 class="projectContainersTitle">Personal Projects</h2>
-            
+
             <!-- Zurich Parking Tracker -->
             <article class="projectContainer" id="parking-tracker-project">
                 <a href="https://parkingtracker.ch/" target="_blank" class="projectTitleContainer">
@@ -370,6 +370,52 @@
                     <span class="technology">CSS</span>
                 </div>
             </article>
+        </section>
+
+        <section id="contact" class="contactFormContainer">
+            <h2>Contact</h2>
+
+            <form action="https://api.staticforms.xyz/submit" method="POST" class="contactForm">
+                <input type="hidden" name="apiKey" value="sf_7a449na8636l106acec8n6n9">
+                <input type="hidden" name="replyTo" value="@">
+
+                <input type="text" name="honeypot" class="visuallyHidden" tabindex="-1" autocomplete="off">
+
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required minlength="2" pattern="^[A-Za-zÀ-ÿ' \-]{2,}$"
+                        placeholder="Your name" aria-describedby="nameError">
+                    <span class="error" id="nameError">Min. 2 letters • letters, apostrophes, dashes</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required placeholder="you@example.com"
+                        aria-describedby="emailError">
+                    <span class="error" id="emailError">Please enter a valid e‑mail address</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject:</label>
+                    <input type="text" id="subject" name="$subject" pattern="^[A-Za-z0-9À-ÿ' &.\-]{2,}$"
+                        placeholder="Subject" aria-describedby="subjectError">
+                    <span class="error" id="subjectError">Min. 2 characters • letters, numbers, basic punctuation</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" required minlength="10" maxlength="1000"
+                        placeholder="Your message…" aria-describedby="messageError"></textarea>
+                    <span class="error" id="messageError">Min. 10 / max. 1000 characters</span>
+                </div>
+
+                <div class="g-recaptcha" data-sitekey="6LeyEDArAAAAAGHBE0Ce5aShXhlmw1yqq_J2z6O5"></div>
+                <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+                <input type="hidden" name="redirectTo" value="https://example.com/success">
+
+                <button type="submit">Send Message</button>
+            </form>
         </section>
 
         <!-- Footer -->

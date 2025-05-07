@@ -511,3 +511,90 @@ body[data-theme="ocean"] .ocean-icon {
     clip: rect(0, 0, 0, 0);
     border: 0;
 }
+
+/* ---------- Contact form ---------- */
+.contactFormContainer {
+    width: 100%;
+    max-width: 40rem;
+    margin: var(--space-xxl) auto 0;
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--card-border);
+}
+
+.contactFormContainer h2 {
+    margin: 0 0 var(--space-lg);
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.contactForm {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.contactForm input[type="text"],
+.contactForm input[type="email"],
+.contactForm textarea {
+    padding: var(--space-xs);
+    font-size: 1rem;
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+.contactForm textarea {
+    min-height: 6rem;
+    resize: vertical;
+}
+
+.contactForm button {
+    align-self: start;
+    padding: var(--space-xs) var(--space-md);
+    font-weight: 600;
+    border: none;
+    border-radius: 4px;
+    background: var(--tertiary-color);
+    color: var(--bg-color);
+    cursor: pointer;
+    transition: opacity .2s ease;
+}
+
+.contactForm button:hover {
+    opacity: .85;
+}
+
+.contactForm input:required:invalid:not(:placeholder-shown),
+.contactForm textarea:required:invalid:not(:placeholder-shown) {
+    border-color: #e03131;
+}
+
+.contactForm input:required:valid:not(:placeholder-shown),
+.contactForm textarea:required:valid:not(:placeholder-shown) {
+    border-color: #2f9e44;
+}
+
+.form-group .error {
+    display: none;
+    font-size: 0.875rem;
+    color: #e03131;
+}
+
+.form-group input:required:invalid:not(:placeholder-shown) + .error,
+.form-group textarea:required:invalid:not(:placeholder-shown) + .error {
+    display: block;
+}
+
+.contactForm input:focus,
+.contactForm textarea:focus {
+    box-shadow: 0 0 0 2px inset var(--bg-color),
+                0 0 0 3px var(--tertiary-color);
+    border-color: var(--tertiary-color);
+}
