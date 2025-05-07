@@ -409,9 +409,6 @@
                     <span class="error" id="messageError">Min. 10 / max. 1000 characters</span>
                 </div>
 
-                <div class="g-recaptcha" data-sitekey="6LeyEDArAAAAAGHBE0Ce5aShXhlmw1yqq_J2z6O5"></div>
-                <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
                 <input type="hidden" name="redirectTo" value="https://example.com/success">
 
                 <button type="submit">Send Message</button>
@@ -448,6 +445,31 @@
             </div>
         </footer>
     </main>
+
+    <script src="https://www.google.com/recaptcha/api.js?render=6LeyEDArAAAAAGHBE0Ce5aShXhlmw1yqq_J2z6O5"></script>
+
+    <script>
+        const form = document.querySelector('form.contactForm');
+        const tokenField = document.createElement('input');
+        tokenField.type = 'hidden';
+        tokenField.name = 'g-recaptcha-response';
+        form.appendChild(tokenField);
+
+        form.addEventListener('submit', event => {
+            event.preventDefault();
+            grecaptcha.ready(() => {
+                grecaptcha.execute('6LeyEDArAAAAAGHBE0Ce5aShXhlmw1yqq_J2z6O5', { action: 'contact' }).then(token => {
+                    tokenField.value = token;
+                    form.submit();
+                })
+                    .catch(err => {
+                        alert('reCAPTCHA failed – please reload and try again');
+                        console.error(err);
+                    });
+            });
+        });
+    </script>
+
 </body>
 
 </html>
