@@ -1,69 +1,79 @@
 document.addEventListener('DOMContentLoaded', function () {
     console.log('%cHey there! 👋', 'font-size: 14px; font-weight: 600;');
-    console.log('%cPortfolio last updated: March 2025', 'font-size: 11px;');
-    console.log('%cSystem theme is set by default ✨, but I respect your choice if you change it!', 'color: #707070;');
+    const lastUpdatedDate = new Date(); 
+    console.log(`%cPortfolio last updated: ${lastUpdatedDate.toLocaleDateString('de-CH', { day: '2-digit', month: 'long', year: 'numeric' })}`, 'font-size: 11px;'); 
+    console.log('%cSystem theme is the default. You can cycle through Light, Dark, and back to System. ✨', 'color: #707070;');
 
     const hours = new Date().getHours();
     const greetingElement = document.getElementById('greeting');
 
     let timeOfDay = 'day';
     if (hours < 11) timeOfDay = 'morning';
-    else if (hours < 13) timeOfDay = 'day';
+    else if (hours < 13) timeOfDay = 'day'; 
     else if (hours < 17) timeOfDay = 'afternoon';
     else timeOfDay = 'evening';
 
-    greetingElement.textContent = 'Good ' + timeOfDay;
+    if (greetingElement) {
+        greetingElement.textContent = 'Good ' + timeOfDay;
+    }
 
     const currentYearElement = document.getElementById('currentYear');
-    currentYearElement.textContent = new Date().getFullYear();
+    if (currentYearElement) {
+        currentYearElement.textContent = new Date().getFullYear();
+    }
 
     const themeButton = document.getElementById('theme-button');
     const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 
-    function applyTheme(theme) {
-        if (theme === 'dark') {
+    function applyTheme(themePreference) {
+        document.body.classList.remove('display-system-icon', 'display-light-icon', 'display-dark-icon');
+
+        if (themePreference === 'dark') {
             document.body.setAttribute('data-theme', 'dark');
-        } else if (theme === 'ocean') {
-            document.body.setAttribute('data-theme', 'ocean');
-        } else if (theme === 'light') {
+            document.body.classList.add('display-dark-icon');
+        } else if (themePreference === 'light') {
             document.body.removeAttribute('data-theme');
-        } else {
+            document.body.classList.add('display-light-icon');
+        } else if (themePreference === 'system') {
             if (prefersDarkScheme.matches) {
                 document.body.setAttribute('data-theme', 'dark');
             } else {
                 document.body.removeAttribute('data-theme');
             }
+            document.body.classList.add('display-system-icon');
         }
     }
 
-    const savedTheme = localStorage.getItem('theme');
+    let currentThemePreference = localStorage.getItem('theme');
+    if (!currentThemePreference || !['system', 'light', 'dark'].includes(currentThemePreference)) {
+        currentThemePreference = 'system'; 
+        localStorage.setItem('theme', 'system');
+    }
+    applyTheme(currentThemePreference); 
 
-    if (!savedTheme || savedTheme === 'system') {
-        applyTheme('system');
-        if (!savedTheme) localStorage.setItem('theme', 'system');
-    } else {
-        applyTheme(savedTheme);
+    if (themeButton) {
+        themeButton.addEventListener('click', function () {
+            let newThemePreference;
+            const storedPreference = localStorage.getItem('theme') || 'system';
+
+            if (storedPreference === 'system') {
+                newThemePreference = 'light';
+            } else if (storedPreference === 'light') {
+                newThemePreference = 'dark';
+            } else { 
+                newThemePreference = 'system';
+            }
+            localStorage.setItem('theme', newThemePreference);
+            applyTheme(newThemePreference);
+        });
     }
 
-    themeButton.addEventListener('click', function () {
-        const currentTheme = document.body.getAttribute('data-theme');
-
-        // cycle through themes: light -> dark -> ocean -> light
-        if (!currentTheme || currentTheme === 'light') {
-            applyTheme('dark');
-            localStorage.setItem('theme', 'dark');
-        } else if (currentTheme === 'dark') {
-            applyTheme('ocean');
-            localStorage.setItem('theme', 'ocean');
-        } else {
-            applyTheme('light');
-            localStorage.setItem('theme', 'light');
-        }
-    });
-
-    prefersDarkScheme.addEventListener('change', function (e) {
-        if (localStorage.getItem('theme') === 'system') {
-            applyTheme('system');
-        }
-    });
+    if (prefersDarkScheme) {
+        prefersDarkScheme.addEventListener('change', function (e) {
+            const storedPreference = localStorage.getItem('theme');
+            if (storedPreference === 'system') {
+                applyTheme('system'); 
+            }
+        });
+    }
 });
